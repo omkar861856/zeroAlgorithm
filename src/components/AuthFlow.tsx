@@ -367,25 +367,25 @@ export const AuthFlow: React.FC<AuthFlowProps> = ({ onAuthSuccess }) => {
               <div>
                 <span className="font-medium text-green-800">User:</span>
                 <span className="text-green-700 ml-2">
-                  {tokenData.user_name}
+                  {tokenData.data.user_name}
                 </span>
               </div>
               <div>
                 <span className="font-medium text-green-800">User ID:</span>
-                <span className="text-green-700 ml-2">{tokenData.user_id}</span>
+                <span className="text-green-700 ml-2">{tokenData.data.user_id}</span>
               </div>
               <div>
                 <span className="font-medium text-green-800">Email:</span>
-                <span className="text-green-700 ml-2">{tokenData.email}</span>
+                <span className="text-green-700 ml-2">{tokenData.data.email}</span>
               </div>
               <div>
                 <span className="font-medium text-green-800">Broker:</span>
-                <span className="text-green-700 ml-2">{tokenData.broker}</span>
+                <span className="text-green-700 ml-2">{tokenData.data.broker}</span>
               </div>
               <div>
                 <span className="font-medium text-green-800">Login Time:</span>
                 <span className="text-green-700 ml-2">
-                  {new Date(tokenData.login_time).toLocaleString()}
+                  {new Date(tokenData.data.login_time).toLocaleString()}
                 </span>
               </div>
             </div>
@@ -394,7 +394,7 @@ export const AuthFlow: React.FC<AuthFlowProps> = ({ onAuthSuccess }) => {
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
             <h3 className="font-medium text-blue-900 mb-2">Access Token</h3>
             <code className="text-sm text-blue-800 break-all">
-              {tokenData.access_token}
+              {tokenData.data.access_token}
             </code>
           </div>
 

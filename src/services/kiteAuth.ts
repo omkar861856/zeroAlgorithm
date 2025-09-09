@@ -1,5 +1,3 @@
-import * as CryptoJS from "crypto-js";
-
 export interface KiteConfig {
   apiKey: string;
   apiSecret: string;
@@ -110,13 +108,6 @@ export class KiteAuthService {
     }
   }
 
-  /**
-   * Generate checksum for API request
-   */
-  private generateChecksum(requestToken: string): string {
-    const data = this.config.apiKey + requestToken + this.config.apiSecret;
-    return CryptoJS.SHA256(data).toString();
-  }
 
   /**
    * Exchange request token for access token via backend proxy
@@ -225,7 +216,7 @@ export class KiteAuthService {
    */
   isTokenValid(accessToken: string): boolean {
     // Basic validation - in production, you might want to make an API call
-    return accessToken && accessToken.length > 0;
+    return Boolean(accessToken && accessToken.length > 0);
   }
 }
 
