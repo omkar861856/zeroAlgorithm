@@ -108,7 +108,6 @@ export class KiteAuthService {
     }
   }
 
-
   /**
    * Exchange request token for access token via backend proxy
    */
@@ -116,17 +115,26 @@ export class KiteAuthService {
     const requestBody = {
       request_token: requestToken,
       api_secret: this.config.apiSecret,
+      api_key: this.config.apiKey,
     };
 
     console.log("Sending request to backend:", {
       request_token: requestToken ? "present" : "missing",
       api_secret: this.config.apiSecret ? "present" : "missing",
+      api_key: this.config.apiKey ? "present" : "missing",
       api_secret_length: this.config.apiSecret
         ? this.config.apiSecret.length
         : 0,
+      api_key_length: this.config.apiKey ? this.config.apiKey.length : 0,
     });
 
-    const response = await fetch("http://localhost:3001/api/exchange-token", {
+    // Use environment-based API URL
+    const apiBaseUrl =
+      process.env.NODE_ENV === "production"
+        ? "" // Use relative URL for Vercel API routes
+        : "http://localhost:3001";
+
+    const response = await fetch(`${apiBaseUrl}/api/exchange-token`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
