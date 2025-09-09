@@ -1,0 +1,155 @@
+[
+  {
+    "parameters": {
+      "authentication": "none",
+      "requestMethod": "GET",
+      "url": "={{$json.Base_Url}}/portfolio/holdings",
+      "responseFormat": "json",
+      "jsonParameters": false,
+      "options": {
+        "headerParametersUi": {
+          "parameter": [
+            { "name": "X-Kite-Version", "value": "3" },
+            { "name": "Authorization", "value": "={{$json.Authorization}}" }
+          ]
+        }re
+      }
+    },
+    "id": "getHoldings",
+    "name": "Get Holdings",
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 5,
+    "position": [200, 200]
+  },
+  {
+    "parameters": {
+      "authentication": "none",
+      "requestMethod": "GET",
+      "url": "={{$json.Base_Url}}/portfolio/holdings/auctions",
+      "responseFormat": "json",
+      "jsonParameters": false,
+      "options": {
+        "headerParametersUi": {
+          "parameter": [
+            { "name": "X-Kite-Version", "value": "3" },
+            { "name": "Authorization", "value": "={{$json.Authorization}}" }
+          ]
+        }
+      }
+    },
+    "id": "getAuctions",
+    "name": "Get Holdings Auctions",
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 5,
+    "position": [200, 380]
+  },
+  {
+    "parameters": {
+      "authentication": "none",
+      "requestMethod": "GET",
+      "url": "={{$json.Base_Url}}/portfolio/positions",
+      "responseFormat": "json",
+      "jsonParameters": false,
+      "options": {
+        "headerParametersUi": {
+          "parameter": [
+            { "name": "X-Kite-Version", "value": "3" },
+            { "name": "Authorization", "value": "={{$json.Authorization}}" }
+          ]
+        }
+      }
+    },
+    "id": "getPositions",
+    "name": "Get Positions",
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 5,
+    "position": [200, 560]
+  },
+  {
+    "parameters": {
+      "authentication": "none",
+      "requestMethod": "PUT",
+      "url": "={{$json.Base_Url}}/portfolio/positions",
+      "responseFormat": "json",
+      "jsonParameters": false,
+      "options": {
+        "bodyContentType": "form-urlencoded",
+        "headerParametersUi": {
+          "parameter": [
+            { "name": "X-Kite-Version", "value": "3" },
+            { "name": "Authorization", "value": "={{$json.Authorization}}" }
+          ]
+        }
+      },
+      "bodyParametersUi": {
+        "parameter": [
+          { "name": "tradingsymbol", "value": "INFY" },
+          { "name": "exchange", "value": "NSE" },
+          { "name": "transaction_type", "value": "BUY" },
+          { "name": "position_type", "value": "overnight" },
+          { "name": "quantity", "value": "3" },
+          { "name": "old_product", "value": "NRML" },
+          { "name": "new_product", "value": "MIS" }
+        ]
+      }
+    },
+    "id": "convertPosition",
+    "name": "Convert Position",
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 5,
+    "position": [520, 560]
+  },
+  {
+    "parameters": {
+      "authentication": "none",
+      "requestMethod": "POST",
+      "url": "={{$json.Base_Url}}/portfolio/holdings/authorise",
+      "responseFormat": "json",
+      "jsonParameters": false,
+      "options": {
+        "bodyContentType": "form-urlencoded",
+        "headerParametersUi": {
+          "parameter": [
+            { "name": "X-Kite-Version", "value": "3" },
+            { "name": "Authorization", "value": "={{$json.Authorization}}" }
+          ]
+        }
+      },
+      "bodyParametersUi": {
+        "parameter": [
+          { "name": "isin", "value": "INE002A01018" },
+          { "name": "quantity", "value": "50" },
+          { "name": "isin", "value": "INE009A01021" },
+          { "name": "quantity", "value": "50" }
+        ]
+      }
+    },
+    "id": "authoriseSpecific",
+    "name": "Authorise Holdings (ISINs)",
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 5,
+    "position": [520, 380]
+  },
+  {
+    "parameters": {
+      "authentication": "none",
+      "requestMethod": "POST",
+      "url": "={{$json.Base_Url}}/portfolio/holdings/authorise",
+      "responseFormat": "json",
+      "jsonParameters": false,
+      "options": {
+        "headerParametersUi": {
+          "parameter": [
+            { "name": "X-Kite-Version", "value": "3" },
+            { "name": "Authorization", "value": "={{$json.Authorization}}" }
+          ]
+        }
+      }
+    },
+    "id": "authoriseAll",
+    "name": "Authorise Holdings (All)",
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 5,
+    "position": [520, 200]
+  }
+]
